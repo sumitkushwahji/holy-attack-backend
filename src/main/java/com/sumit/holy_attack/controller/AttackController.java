@@ -24,7 +24,9 @@ public class AttackController {
 
     @PostMapping
     public ResponseEntity<CreateAttackResponse> createAttack(@Valid @RequestBody CreateAttackRequest request) {
-        log.info("API: Creating attack for {}", request.getAttackerName());
+        log.info("API: Creating attack for {} with color {} and imageUrl {}", 
+                request.getAttackerName(), request.getColor(), request.getImageUrl());
+        log.info("Full request: {}", request);
         try {
             CreateAttackResponse response = attackService.createAttack(request);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
